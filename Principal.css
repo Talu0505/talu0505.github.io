@@ -1,0 +1,87 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff3d2;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+/* Header */
+.header {
+    background-color: #ffb65b;
+    color: white;
+    padding: 15px;
+}
+
+.logo {
+    height: 80px;
+}
+.container-fluid{
+    font-size: 30;
+    display: flex;
+    padding: 10px;
+    min-height: 5vh;
+    border: 1px solid #ffb65b;
+    
+}
+
+/* contenedor de modulos, containerfluid2*/
+
+.container-fluid2 {
+    display: flex;
+    flex-direction: row; /* Alinea la barra lateral a la izquierda y el contenido a la derecha */
+    min-height: 100vh;
+    border: 1px solid #ffb65b;
+    
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 350px;
+    background-color: #b9d489;
+    padding: 15px;
+    border: 1px solid #ffb65b;
+    
+}
+
+/* Contenido principal */
+.main-content {
+    flex-grow: 1; /* Ocupa el espacio restante */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .container-fluid2 {
+        flex-direction: column; /* Apila la barra lateral arriba y el contenido abajo */
+    }
+
+    .sidebar {
+        width: 100%; /* Ocupa todo el ancho */
+        text-align: center;
+    }
+}
+.img-body{
+    height: 366;
+    /* width: 684px; */
+}
+.text-orange {
+    color: #e68817;
+}
+
+.btn-green {
+    background-color: #7cb11f;
+    color: white;
+}
+.btn-green:hover {
+    background-color: #c3e981;
+    color: white;
+}
+
+.no-center {
+    justify-content: flex-start;
+}

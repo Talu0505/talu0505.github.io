@@ -1,0 +1,188 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArepYa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a5fdb2ec48.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Principal.css">
+    <link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+    <header class="header py-2 px-5 d-flex align-items-center justify-content-between"><!--Informacion usuario, barra superior-->
+        <div class="d-flex align-items-center">
+            <img src="imagenes/logo-arepya.png" alt="logo" class="me-2 logo">
+            <div class="user-info">
+                <strong>Usuario:</strong> Tatyana Garces Orozco <br>
+                <strong>Cargo:</strong> Administrador <br>
+                <strong>Sede:</strong> Popayán 01<br>
+                <span>Fecha: 16/02/2024 5:00 PM</span>
+            </div>
+        </div>
+    </header> 
+    
+    <nav class="navbar navbar-light bg-light navbar-expand"><!--Barra de navegacion con iconos-->
+        <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="pagina principal.html"><i class="fa-solid fa-house"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-circle-user"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fa-solid fa-user-xmark"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid2">  <!--barra izquierda y visualizacion principal-->
+            <nav class="col-md-2 sidebar collapse d-md-block show" id="sidebarMenu"><!--Barra lateral, modulos-->
+                <h4><b>Menú de Módulos</b></h4>
+                <ul class="list-unstyled">
+                    <li><!--modulo de clientes-->
+                        <a class="text-orange text-decoration-none" data-bs-toggle="collapse" href="#clienteMenu"><b>Clientes</b></a>
+                        <ul class="list-unstyled ps-3 menu-expandible" id="clienteMenu">
+                            <button d="btnRegistro" class="ir-registro" onclick="toggleRegistro()">Ingresar Cliente</button>  
+                            <li><a href="Consultar cliente.html" class="text-dark text-decoration-none">Consultar cliente</a></li>
+                        </ul>
+                    </li>
+                    <li><!--modulo de Inventario-->
+                        <a class="text-orange text-decoration-none" data-bs-toggle="collapse" href="#inventarioMenu"><b>Inventario</b></a>
+                        <ul class="collapse list-unstyled ps-3" id="inventarioMenu">
+                            <li><a href="Crear_Producto.html" class="text-dark text-decoration-none">Crear Producto</a></li>
+                            <li><a href="ingresar-productos.html" class="text-dark text-decoration-none">Ingresar Producto</a></li>
+                            <li><a href="inventario-consulta.html" class="text-dark text-decoration-none">Consultar Inventario</a></li>
+                        </ul>
+                    </li>
+                    <li><!--modulo de Facturacion-->
+                        <a class="text-orange text-decoration-none" data-bs-toggle="collapse" href="#facturaMenu"><b>Facturacion</b></a>
+                        <ul class="collapse list-unstyled ps-3" id="facturaMenu">
+                            <li><a href="#" class="text-dark text-decoration-none">Crear Factura</a></li>
+                            <li><a href="#" class="text-dark text-decoration-none">Consultar Factura</a></li>
+                            <li><a href="#" class="text-dark text-decoration-none">Datos de ventas</a></li>
+                        </ul>
+                    </li>
+                    <li><!--modulo de Usuaios-->
+                        <a class="text-orange text-decoration-none" data-bs-toggle="collapse" href="#usuariosMenu"><b>Usuarios</b></a>
+                        <ul class="collapse list-unstyled ps-3" id="usuariosMenu">
+                            <li><a href="usuarios-creacion.html" class="text-dark text-decoration-none">Crear usuario</a></li>
+                            <li><a href="usuarios-consulta.html" class="text-dark text-decoration-none">Consultar usuarios</a></li>
+                        </ul>
+                    </li>
+                    <li><!--modulo de Movimientos-->
+                        <a class="text-orange text-decoration-none" data-bs-toggle="collapse" href="#movimientosMenu"><b>Movimientos</b></a>
+                        <ul class="collapse list-unstyled ps-3" id="movimientosMenu">
+                            <li><a href="#" class="text-dark text-decoration-none">Clientes</a></li>
+                            <li><a href="#" class="text-dark text-decoration-none">Inventario</a></li>
+                            <li><a href="#" class="text-dark text-decoration-none">Facturas</a></li>
+                            <li><a href="#" class="text-dark text-decoration-none">Usuarios</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="main-content"><!--Visualizacion principal-->
+                <div class="formcontacto"><!--Script formulario ingresar datos de los clientes-->
+                    <script>
+                        function registrarCliente(event) {
+                            event.preventDefault();
+                    
+                            let nombre = document.getElementById("nombre").value.trim();
+                            let email = document.getElementById("email").value.trim();
+                            let telefono = document.getElementById("telefono").value.trim();
+                            let edad = document.getElementById("edad").value.trim();
+                            let genero = document.getElementById("genero").value;
+                    
+                            if (nombre === "" || email === "" || telefono === "" || edad === "" || genero === "") {
+                                alert("Todos los campos son obligatorios.");
+                                return;
+                            }
+                    
+                            if (!/^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$/.test(nombre)) {
+                                alert("El nombre solo puede contener letras y espacios.");
+                                return;
+                            }
+                    
+                            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                                alert("Ingrese un correo electrónico válido.");
+                                return;
+                            }
+                    
+                            if (!/^\d{7,10}$/.test(telefono)) {
+                                alert("El teléfono debe contener entre 7 y 10 dígitos.");
+                                return;
+                            }
+                    
+                            if (isNaN(edad) || edad <= 0) {
+                                alert("Ingrese una edad válida.");
+                                return;
+                            }
+                    
+                            // 
+                            fetch('cliente_creacion.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded'
+                                },
+                                body: `nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&telefono=${encodeURIComponent(telefono)}&edad=${encodeURIComponent(edad)}&genero=${encodeURIComponent(genero)}`
+                            })
+                            .then(response => response.text())
+                            .then(data => {
+                                alert(data);
+                                document.getElementById("formRegistro").reset();
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                        }
+                    
+                        function eliminarFila(btn) {
+                            let fila = btn.parentNode.parentNode;
+                            fila.parentNode.removeChild(fila);
+                        }
+                    
+                        function toggleRegistro() {
+                            let formulario = document.getElementById("formContainer");
+                            let boton = document.getElementById("btnRegistro");
+                            if (formulario.style.display === "none" || formulario.style.display === "") {
+                                formulario.style.display = "block";
+                                boton.textContent = "Cerrar";
+                            } else {
+                                formulario.style.display = "none";
+                                boton.textContent = "Registrar Cliente";
+                            }
+                        }
+                    </script>
+                    </div>
+                    <div class="container">
+                        <div class="logo-container">
+                        </div>
+                        <div id="formContainer" class="form-container">
+                            <h3>Formulario de Registro</h3>
+                            <form id="formRegistro" onsubmit="registrarCliente(event)">
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" id="nombre" name="nombre" required>
+                    
+                                <label for="email">Correo Electrónico:</label>
+                                <input type="email" id="email" name="email" required>
+                    
+                                <label for="telefono">Teléfono:</label>
+                                <input type="tel" id="telefono" name="telefono" required>
+                    
+                                <label for="edad">Edad:</label>
+                                <input type="number" id="edad" name="edad" required>
+                    
+                                <label for="genero">Género:</label>
+                                <select id="genero" name="genero" required>
+                                    <option value="">Seleccione</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                                <button type="submit">Registrar</button>
+                            </form>
+                            <div class="container">
+                            </div>
+                        </div>
+                    </div>
+                <img src="imagenes/logo-arepya.png" alt="Logo" class="img-body">
+            </nav> 
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

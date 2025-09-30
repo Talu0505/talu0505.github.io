@@ -1,0 +1,245 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArepYa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a5fdb2ec48.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Principal.css">
+    <link rel="stylesheet" href="formulario.css">
+</head>
+
+<body>
+    <header class="header py-2 px-5 d-flex align-items-center justify-content-between">
+        <!--Informacion usuario, barra superior-->
+        <div class="d-flex align-items-center">
+            <img src="imagenes/logo-arepya.png" alt="logo" class="me-2 logo">
+            <div class="user-info">
+                <strong>Usuario:</strong> Tatyana Garces Orozco <br>
+                <strong>Cargo:</strong> Administrador <br>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-light bg-light navbar-expand"><!--Barra de navegacion con iconos-->
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="pagina principal.html"><i
+                            class="fa-solid fa-house"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-circle-user"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html"><i class="fa-solid fa-user-xmark"></i></a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <div class="container-fluid2"> <!--barra izquierda y visualizacion principal-->
+        <nav class="col-md-2 sidebar collapse d-md-block show" id="sidebarMenu"><!--Barra lateral, modulos-->
+            <h4><b>Menú de Módulos</b></h4>
+            <ul class="list-unstyled">
+                <li><!--modulo de clientes-->
+                    <a class="text-orange text-decoration-none" data-bs-toggle="collapse"
+                        href="#clienteMenu"><b>Clientes</b></a>
+                    <ul class="list-unstyled ps-3 menu-expandible" id="clienteMenu">
+                        <li><a href="cliente creacion.html" class="text-dark text-decoration-none">Ingresar cliente</a>
+                        </li>
+                        <li><a href="Consultar cliente.html" class="text-dark text-decoration-none">Consultar
+                                cliente</a></li>
+                    </ul>
+                </li>
+                <li><!--modulo de Inventario-->
+                    <a class="text-orange text-decoration-none" data-bs-toggle="collapse"
+                        href="#inventarioMenu"><b>Inventario</b></a>
+                    <ul class="collapse list-unstyled ps-3" id="inventarioMenu">
+                        <li><a href="Crear_Producto.html" class="text-dark text-decoration-none">Crear Producto</a></li>
+                        <li><a href="ingresar-productos.html" class="text-dark text-decoration-none">Ingresar
+                                Producto</a></li>
+                        <li><a href="inventario-consulta.html" class="text-dark text-decoration-none">Consultar
+                                Inventario</a></li>
+                    </ul>
+                </li>
+                <li><!--modulo de Facturacion-->
+                    <a class="text-orange text-decoration-none" data-bs-toggle="collapse"
+                        href="#facturaMenu"><b>Facturacion</b></a>
+                    <ul class="collapse list-unstyled ps-3" id="facturaMenu">
+                        <li><a href="#" class="text-dark text-decoration-none">Crear Factura</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Consultar Factura</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Datos de ventas</a></li>
+                    </ul>
+                </li>
+                <li><!--modulo de Usuaios-->
+                    <a class="text-orange text-decoration-none" data-bs-toggle="collapse"
+                        href="#usuariosMenu"><b>Usuarios</b></a>
+                    <ul class="collapse list-unstyled ps-3" id="usuariosMenu">
+                        <li><a href="usuarios-creacion.html" class="text-dark text-decoration-none">Crear usuario</a>
+                        </li>
+                        <li><a href="usuarios-consulta.html" class="text-dark text-decoration-none">Consultar
+                                usuarios</a></li>
+                    </ul>
+                </li>
+                <li><!--modulo de Movimientos-->
+                    <a class="text-orange text-decoration-none" data-bs-toggle="collapse"
+                        href="#movimientosMenu"><b>Movimientos</b></a>
+                    <ul class="collapse list-unstyled ps-3" id="movimientosMenu">
+                        <li><a href="#" class="text-dark text-decoration-none">Clientes</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Inventario</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Facturas</a></li>
+                        <li><a href="#" class="text-dark text-decoration-none">Usuarios</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <nav class="main-content no-center"><!--Visualizacion principal-->
+            <img src="imagenes/logo-arepya.png" alt="" class="img-body">
+            <div class="tabla-controles">
+                <input type="text" id="buscar-input" placeholder="Buscar por nombre, correo, etc.">
+                <button onclick="filtrarTabla()">Filtrar</button>
+                <button onclick="exportarTabla()">Exportar</button>
+            </div>
+            <!-- Tabla de datos clientes desde base de datos-->
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Telefono</th>
+                        <th>Edad</th>
+                        <th>Genero</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-body">
+                    <!-- Datos desde la base de datos -->
+                </tbody>
+            </table>
+            </table> <!--edicion datos-->
+            <div id="formulario-edicion" style="display:none; margin-top: 20px;">
+                <h3>Editar Cliente</h3>
+                <form id="formEditar" onsubmit="guardarEdicion(event)">
+                    <input type="hidden" id="editar-id">
+
+                    <label>Nombre:</label>
+                    <input type="text" id="editar-nombre" required><br>
+
+                    <label>Correo:</label>
+                    <input type="email" id="editar-correo" required><br>
+
+                    <label>Teléfono:</label>
+                    <input type="text" id="editar-telefono" required><br>
+
+                    <label>Edad:</label>
+                    <input type="number" id="editar-edad" required><br>
+
+                    <label>Género:</label>
+                    <select id="editar-genero" required>
+                        <option value="">Seleccione</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select><br>
+
+                    <button type="submit">Guardar Cambios</button>
+                    <button type="button" onclick="cancelarEdicion()">Cancelar</button>
+                </form>
+            </div>
+        </nav>
+
+        <script>
+            // mostrar clientes
+            window.onload = function () {
+                fetch('consultar_cliente.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        const tbody = document.getElementById("tabla-body");
+                        tbody.innerHTML = ""; // Limpiar tabla 
+
+                        data.forEach(cliente => {
+                            const fila = document.createElement("tr");
+                            fila.innerHTML = `
+                            <td>${cliente.id}</td>
+                            <td>${cliente.nombre}</td>
+                            <td>${cliente.correo}</td>
+                            <td>${cliente.telefono}</td>
+                            <td>${cliente.edad}</td>
+                            <td>${cliente.genero}</td>
+                            <td>
+                            <button onclick="mostrarFormularioEdicion(${cliente.id}, '${cliente.nombre}', '${cliente.correo}', '${cliente.telefono}', ${cliente.edad}, '${cliente.genero}')">Editar</button>
+                            <button onclick="eliminarCliente(${cliente.id})">Eliminar</button>
+                            </td>
+                        `;
+                            tbody.appendChild(fila);
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Error al obtener los datos:", error);
+                    });
+            }
+            // eliminar clientes
+            function eliminarCliente(id) {
+                if (confirm("¿Seguro que deseas eliminar este cliente?")) {
+                    fetch('eliminar_cliente.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: `id=${id}`
+                    })
+                        .then(response => response.text())
+                        .then(data => {
+                            alert(data);
+                            location.reload(); // Actualiza tabla
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+            }
+            // editar clientes
+            function mostrarFormularioEdicion(id, nombre, correo, telefono, edad, genero) {
+                document.getElementById("formulario-edicion").style.display = "block";
+
+                document.getElementById("editar-id").value = id;
+                document.getElementById("editar-nombre").value = nombre;
+                document.getElementById("editar-correo").value = correo;
+                document.getElementById("editar-telefono").value = telefono;
+                document.getElementById("editar-edad").value = edad;
+                document.getElementById("editar-genero").value = genero;
+            }
+
+            function cancelarEdicion() {
+                document.getElementById("formulario-edicion").style.display = "none";
+            }
+
+            function guardarEdicion(event) {
+                event.preventDefault();
+
+                const id = document.getElementById("editar-id").value;
+                const nombre = document.getElementById("editar-nombre").value;
+                const correo = document.getElementById("editar-correo").value;
+                const telefono = document.getElementById("editar-telefono").value;
+                const edad = document.getElementById("editar-edad").value;
+                const genero = document.getElementById("editar-genero").value;
+
+                fetch('editar_cliente.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `id=${id}&nombre=${encodeURIComponent(nombre)}&correo=${encodeURIComponent(correo)}&telefono=${encodeURIComponent(telefono)}&edad=${edad}&genero=${encodeURIComponent(genero)}`
+                })
+                    .then(response => response.text())
+                    .then(data => {
+                        alert(data);
+                        location.reload(); // recargar datos
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        </script>
+
+
+        </nav>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
